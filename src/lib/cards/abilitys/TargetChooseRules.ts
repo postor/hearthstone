@@ -8,14 +8,14 @@ const myHero = 0b00001,
   allMinion = myMinion | opponentMinion,
   all = allMy | allOpponent
 
-export const rules = {
-  myHero,
-  myMinion,
-  opponentHero,
-  opponentMinion,
-  allMy,
-  allOpponent,
-  allHero,
-  allMinion,
-  all
+export default class TargetChooseRules {
+  static myHero = myHero
+  static myMinion = myMinion
+  static opponentHero = opponentHero
+  static opponentMinion = opponentMinion
+  static allMy = allMy
+  static allOpponent = allOpponent
+  static allHero = allHero
+  static allMinion = allMinion
+  static all = all
 }

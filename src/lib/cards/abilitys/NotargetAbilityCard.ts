@@ -1,5 +1,5 @@
 import BaseAbilityCard from "./BaseAbilityCard";
 
-export default class NotargetMagicCard extends BaseAbilityCard {
+export default class NotargetAbilityCard extends BaseAbilityCard {
   needTarget = false
 }

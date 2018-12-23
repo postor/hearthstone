@@ -1,5 +1,6 @@
 import PlayerData from "./helpers/PlayerData";
 import BasePlayer from "./BasePlayer";
+import BaseEvent from "./events/BaseEvent";
 
 export default class BaseGame {
 
@@ -13,6 +14,10 @@ export default class BaseGame {
   }
 
   getOpponent(player:BasePlayer){
+    
+  }
+
+  queue(event:BaseEvent){
     
   }
 }

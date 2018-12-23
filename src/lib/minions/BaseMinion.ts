@@ -2,27 +2,28 @@ import BaseObject from "../BaseObject";
 import BasePlayer from "../BasePlayer";
 import AttarkableInterface from "../AttarkableInterface";
 import Damage from "../events/Damage";
-import BaseMinion from "../minions/BaseMinion";
+import BaseHero from "../heros/BaseHero";
 
-export default class BaseHero extends BaseObject implements AttarkableInterface {
+export default class BaseMinion extends BaseObject implements AttarkableInterface {
 
-  static HeroName: string
+  static MinionName: string
 
   turnAttarkCount: number = 0
   turnAttarkLimit: number = 1
+  position: number = 0
+  canNotAttark = false
 
   constructor(
     public player: BasePlayer,
-    private hp: number = 30,
+    public hp: number = 30,
+    public strength = 0
   ) {
     super(player.game)
   }
 
 
   getAttark() {
-    return (this.player.myTurn &&
-      this.player.weapon &&
-      this.player.weapon.attark) || 0
+    return this.strength
   }
 
   getHp() {
@@ -30,13 +31,20 @@ export default class BaseHero extends BaseObject implements AttarkableInterface 
   }
 
   canAttark(target: AttarkableInterface) {
-    return !!(this.player.myTurn &&
-      this.player.weapon &&
-      this.player.weapon.attark)
+    return !this.canNotAttark && !!this.strength
   }
 
   attark(target: BaseHero | BaseMinion) {
-    new Damage(`${this.getName()} attark ${target.getName()} `, this, [target])
+    this.game.queue(new Damage(
+      `${this.getName()} attark ${target.getName()} `,
+      this,
+      [target]
+    ))
+    this.game.queue(new Damage(
+      `${this.getName()} attark ${target.getName()} `,
+      this,
+      [target]
+    ))
   }
 
   getName() {
